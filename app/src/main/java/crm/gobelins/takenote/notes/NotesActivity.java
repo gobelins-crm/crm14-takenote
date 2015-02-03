@@ -22,18 +22,13 @@ public class NotesActivity extends ActionBarActivity {
         ListView list = (ListView) findViewById(R.id.list_notes);
 
         // On créé un tableau de données en dur
-        ArrayList<String> datas = new ArrayList<>();
+        ArrayList<Note> datas = new ArrayList<>();
         for (int i = 0; i < 255; i += 1) {
-            datas.add("Note: " + i);
+            datas.add(new Note(i, "title " + i, "text " + i));
         }
 
         // On créé l'adapter pour notre listView
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(
-                this, // le contexte
-                R.layout.note, // le layout pour chaque item de la liste
-                R.id.note_title, // l'id de l'élément qui reçoit les données
-                datas // les données de l'adapter
-        );
+        ArrayAdapter<Note> listAdapter = new NoteAdapter(this, datas);
 
         // On lie l'adapter avec la liste
         list.setAdapter(listAdapter);
