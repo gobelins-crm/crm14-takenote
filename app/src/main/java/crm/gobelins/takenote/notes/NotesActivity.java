@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import crm.gobelins.takenote.R;
 
@@ -21,11 +21,8 @@ public class NotesActivity extends ActionBarActivity {
         // On récupère une référence vers notre listView
         ListView list = (ListView) findViewById(R.id.list_notes);
 
-        // On créé un tableau de données en dur
-        ArrayList<Note> datas = new ArrayList<>();
-        for (int i = 0; i < 255; i += 1) {
-            datas.add(new Note(i, "title " + i, "text " + i));
-        }
+        // On récupère un tableau de données en dur
+        List<Note> datas = NotesManager.getInstance().getAllNotes();
 
         // On créé l'adapter pour notre listView
         ArrayAdapter<Note> listAdapter = new NoteAdapter(this, datas);
